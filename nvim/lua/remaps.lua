@@ -32,8 +32,8 @@ map('n', 'k', 'v:count? "k": "gk"', { expr = true }) -- use j if selecting other
 
 
 -- Buffer management
-map('n', '<leader>q', '<cmd>Bdelete<CR>') -- delete buffer
-map('n', '<leader>Q', '<cmd>Bdelete!<CR>') -- delete buffer and discard changes
+map('n', '<leader>q', '<cmd>bdelete<CR>') -- delete buffer
+map('n', '<leader>Q', '<cmd>bdelete!<CR>') -- delete buffer and discard changes
 
 -- Copy and paste
 map('v', 'p', '"_dP') -- Don't copy after paste in visual mode
@@ -48,5 +48,17 @@ map('nv', '<leader>p', '"+p')
 -- Bufferline
 map('n', '<S-h>', '<cmd>BufferLineCyclePrev<CR>', {silent = true})
 map('n', '<S-l>', '<cmd>BufferLineCycleNext<CR>', {silent = true})
-map('n', '<S-M-h>', '<cmd>BufferLineMovePrev<CR>', {silent = true})
-map('n', '<S-M-l>', '<cmd>BufferLineMoveNext<CR>', {silent = true})
+map('n', '<M-h>', '<cmd>BufferLineMovePrev<CR>', {silent = true})
+map('n', '<M-l>', '<cmd>BufferLineMoveNext<CR>', {silent = true})
+
+-- Telescope
+map('n', '<C-p>', '<cmd>Telescope find_files hidden=true<CR>', {silent = true})
+map('n', '<C-f>', '<cmd>Telescope live_grep<CR>', {silent = true})
+map('n', '<leader>ff', '<cmd>Telescope find_files hidden=true<CR>', {silent = true})
+map('n', '<leader>fg', '<cmd>Telescope live_grep<CR>', {silent = true})
+map('n', '<leader>fb', '<cmd>Telescope buffers<CR>', {silent = true})
+map('n', '<leader>fh', '<cmd>Telescope help_tags<CR>', {silent = true})
+map('n', '<leader>fo', '<cmd>Telescope oldfiles<CR>', {silent = true})
+
+-- Tree
+map('n', '<leader>v', '<cmd>NvimTreeToggle<CR>', {silent = true})
