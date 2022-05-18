@@ -165,6 +165,11 @@ local function nvimTreeConfig()
     })
 end
 
+local function sessionConfig()
+    vim.opt.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,globals"
+    vim.g.prosession_per_branch = 1
+end
+
 packer.startup(function()
 
     -- Packer can manage itself
@@ -221,6 +226,18 @@ packer.startup(function()
     -- Basic helpers
     use "jiangmiao/auto-pairs"
     use "tpope/vim-commentary"
+    use 'famiu/bufdelete.nvim'
+    use {
+        'machakann/vim-highlightedyank',
+        config = function() vim.g.highlightedyank_highlight_duration=150 end
+    }
+
+    -- Sessions
+    use {
+        'dhruvasagar/vim-prosession',
+        requires = { 'tpope/vim-obsession' },
+        config = sessionConfig,
+    }
 
     -- TODO: zen mode + twlight
 

@@ -32,8 +32,8 @@ map('n', 'k', 'v:count? "k": "gk"', { expr = true }) -- use j if selecting other
 
 
 -- Buffer management
-map('n', '<leader>q', '<cmd>bdelete<CR>') -- delete buffer
-map('n', '<leader>Q', '<cmd>bdelete!<CR>') -- delete buffer and discard changes
+map('n', '<leader>q', '<cmd>Bdelete<CR>') -- delete buffer
+map('n', '<leader>Q', '<cmd>Bdelete!<CR>') -- delete buffer and discard changes
 
 -- Copy and paste
 map('v', 'p', '"_dP') -- Don't copy after paste in visual mode
