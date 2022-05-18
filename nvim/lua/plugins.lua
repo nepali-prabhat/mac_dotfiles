@@ -231,6 +231,7 @@ packer.startup(function()
         'machakann/vim-highlightedyank',
         config = function() vim.g.highlightedyank_highlight_duration=150 end
     }
+    use "lukas-reineke/indent-blankline.nvim"
 
     -- Sessions
     use {
