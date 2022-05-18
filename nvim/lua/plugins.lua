@@ -125,13 +125,25 @@ local function telescopeConfig()
         },
         initial_mode = "insert",
         selection_strategy = "reset",
+        sorting_strategy = "descending",
         path_display = { "absolute" },
         winblend = 0,
         use_less = true,
         set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
+        file_ignore_patterns = { "node_modules", ".git" },
+        file_sorter = require("telescope.sorters").get_fuzzy_file,
+        generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
         file_previewer = require("telescope.previewers").vim_buffer_cat.new,
         grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
         qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
+        extensions = {
+            fzf = {
+                  fuzzy = true,                    -- false will only do exact matching
+                  override_generic_sorter = true,  -- override the generic sorter
+                  override_file_sorter = true,     -- override the file sorter
+                  case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
+            }
+        }
     }
     require("telescope").setup({
        defaults = defaults,
@@ -183,6 +195,10 @@ packer.startup(function()
         },
         config = nvimTreeConfig,
 
+    }
+    use {
+        'nvim-telescope/telescope-fzf-native.nvim',
+        run = 'make'
     }
     use {
         'nvim-telescope/telescope.nvim',
