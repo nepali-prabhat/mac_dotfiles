@@ -22,8 +22,8 @@ map('n', '<leader>k', '<C-w>k')
 map('n', '<leader>l', '<C-w>l')
 
 -- Navigation
-map('nx', '<C-j>', '@=\'5j\'<CR>') -- The weird @ is used to save the position in cursor history
-map('nx', '<C-k>', '@=\'5k\'<CR>')
+map('nx', '<C-j>', '@=\'5j\'<CR>', {silent = true}) -- The weird @ is used to save the position in cursor history
+map('nx', '<C-k>', '@=\'5k\'<CR>', {silent = true})
 map('nx', '<C-h>', '0')
 map('nx', '<C-l>', '$')
 
