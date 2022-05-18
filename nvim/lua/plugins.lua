@@ -170,13 +170,24 @@ local function sessionConfig()
     vim.g.prosession_per_branch = 1
 end
 
+local function gruvboxConfig()
+    vim.g.gruvbox_baby_function_style = "NONE"
+    vim.g.gruvbox_baby_keyword_style = "NONE"
+    vim.g.gruvbox_baby_telescope_theme = 1
+    vim.g.gruvbox_baby_background_color = "medium" -- medium or dark
+    vim.g.gruvbox_baby_transparent_mode = false
+end
+
 packer.startup(function()
 
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
 
     -- Theme
-    use 'luisiacc/gruvbox-baby'
+    use {
+        'luisiacc/gruvbox-baby',
+        config = gruvboxConfig 
+    }
 
     -- Show hex colors in neovim (#ffb299)
     use {
