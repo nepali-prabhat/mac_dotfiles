@@ -1,4 +1,5 @@
--- NOTE: lsp related mappings are defined in lsp.lua file
+-- NOTE: lsp related mappings are defined in lsp.lua file.
+--       Some mappings are also in plugins
 
 local map = require('utils').map
 
@@ -80,9 +81,8 @@ vim.api.nvim_set_keymap('s', '<C-s>', 'vsnip#jumpable(-1) ? \'<Plug>(vsnip-jump-
 -- Timber
 map('nx', '<Leader>ll', '<Plug>(TimberLog)')
 
-
 -- Trouble
 map('n', '<Leader>gl', '<cmd>TroubleToggle<CR>')
 
-
--- NOTE: lsp related mappings are defined in lsp.lua file
+-- NOTE: lsp related mappings are defined in lsp.lua file.
+--       Some mappings are also in plugins 

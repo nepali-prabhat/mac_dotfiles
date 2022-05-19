@@ -238,6 +238,53 @@ local function troubleConfig()
 
 end
 
+local function gitSignsConfig()
+    require('gitsigns').setup({
+        numhl = true,
+        current_line_blame_opts = {
+            delay = 200,
+        },
+        on_attach = function(bufnr)
+            local gs = package.loaded.gitsigns
+
+            local function map(mode, l, r, opts)
+                opts = opts or {}
+                opts.buffer = bufnr
+                vim.keymap.set(mode, l, r, opts)
+            end
+
+            -- Navigation
+            map('n', ']c', function()
+                if vim.wo.diff then return ']c' end
+                vim.schedule(function() gs.next_hunk() end)
+                return '<Ignore>'
+            end, { expr = true })
+
+            map('n', '[c', function()
+                if vim.wo.diff then return '[c' end
+                vim.schedule(function() gs.prev_hunk() end)
+                return '<Ignore>'
+            end, { expr = true })
+
+            -- Actions
+            map({ 'n', 'v' }, '<leader>hs', ':Gitsigns stage_hunk<CR>')
+            map({ 'n', 'v' }, '<leader>hr', ':Gitsigns reset_hunk<CR>')
+            map('n', '<leader>hS', gs.stage_buffer)
+            map('n', '<leader>hu', gs.undo_stage_hunk)
+            map('n', '<leader>hR', gs.reset_buffer)
+            map('n', '<leader>hp', gs.preview_hunk)
+            map('n', '<leader>hb', function() gs.blame_line { full = true } end)
+            map('n', '<leader>tb', gs.toggle_current_line_blame)
+            map('n', '<leader>hd', gs.diffthis)
+            map('n', '<leader>hD', function() gs.diffthis('~') end)
+            map('n', '<leader>td', gs.toggle_deleted)
+
+            -- Text object
+            map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
+        end
+    })
+end
+
 packer.startup(function()
 
     -- Packer can manage itself
@@ -312,7 +359,6 @@ packer.startup(function()
     -- LSP (configured in ./lsp.lua folder)
     use 'neovim/nvim-lspconfig'
     use 'williamboman/nvim-lsp-installer'
-    use 'tami5/lspsaga.nvim'
     use {
         'hrsh7th/nvim-cmp',
         requires = { "hrsh7th/cmp-nvim-lsp", "hrsh7th/cmp-vsnip", "hrsh7th/cmp-buffer", "hrsh7th/cmp-path" },
@@ -327,8 +373,13 @@ packer.startup(function()
         requires = "kyazdani42/nvim-web-devicons",
         config = troubleConfig,
     }
-    -- TODO:
+
     -- Git
+    use {
+        'lewis6991/gitsigns.nvim',
+        config = gitSignsConfig
+    }
+    -- TODO:
     -- zen mode + twlight
     -- fold
 
