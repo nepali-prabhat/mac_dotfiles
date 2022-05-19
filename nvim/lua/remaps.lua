@@ -1,3 +1,5 @@
+-- NOTE: lsp related mappings are defined in lsp.lua file
+
 local map = require('utils').map
 
 map('', '<Space>', '<NOP>', { silent = true })
@@ -9,7 +11,7 @@ map('n', '<leader>/', '<cmd>set nohlsearch!<CR>', { silent = true })
 
 map('n', '<leader>=', '<C-w>=') -- Resize windows to equal sizes
 
-map('n', '<leader>.', '<cmd>set wrap!<CR>', {silent = true }) -- Toggle wrap
+map('n', '<leader>.', '<cmd>set wrap!<CR>', { silent = true }) -- Toggle wrap
 
 -- Neovim terminal mappings
 map('t', '<Esc>', '<C-\\><C-n>')
@@ -22,8 +24,8 @@ map('n', '<leader>k', '<C-w>k')
 map('n', '<leader>l', '<C-w>l')
 
 -- Navigation
-map('nx', '<C-j>', '@=\'5j\'<CR>', {silent = true}) -- The weird @ is used to save the position in cursor history
-map('nx', '<C-k>', '@=\'5k\'<CR>', {silent = true})
+map('nx', '<C-j>', '@=\'5j\'<CR>', { silent = true }) -- The weird @ is used to save the position in cursor history
+map('nx', '<C-k>', '@=\'5k\'<CR>', { silent = true })
 map('nx', '<C-h>', '0')
 map('nx', '<C-l>', '$')
 
@@ -46,19 +48,41 @@ map('nv', '<leader>p', '"+p')
 ----------
 
 -- Bufferline
-map('n', '<S-h>', '<cmd>BufferLineCyclePrev<CR>', {silent = true})
-map('n', '<S-l>', '<cmd>BufferLineCycleNext<CR>', {silent = true})
-map('n', '<M-h>', '<cmd>BufferLineMovePrev<CR>', {silent = true})
-map('n', '<M-l>', '<cmd>BufferLineMoveNext<CR>', {silent = true})
+map('n', '<S-h>', '<cmd>BufferLineCyclePrev<CR>', { silent = true })
+map('n', '<S-l>', '<cmd>BufferLineCycleNext<CR>', { silent = true })
+map('n', '<M-h>', '<cmd>BufferLineMovePrev<CR>', { silent = true })
+map('n', '<M-l>', '<cmd>BufferLineMoveNext<CR>', { silent = true })
 
 -- Telescope
-map('n', '<C-p>', '<cmd>Telescope find_files hidden=true<CR>', {silent = true})
-map('n', '<C-f>', '<cmd>Telescope live_grep<CR>', {silent = true})
-map('n', '<leader>ff', '<cmd>Telescope find_files hidden=true<CR>', {silent = true})
-map('n', '<leader>fg', '<cmd>Telescope live_grep<CR>', {silent = true})
-map('n', '<leader>fb', '<cmd>Telescope buffers<CR>', {silent = true})
-map('n', '<leader>fh', '<cmd>Telescope help_tags<CR>', {silent = true})
-map('n', '<leader>fo', '<cmd>Telescope oldfiles<CR>', {silent = true})
+map('n', '<C-p>', '<cmd>Telescope find_files hidden=true<CR>', { silent = true })
+map('n', '<C-f>', '<cmd>Telescope live_grep<CR>', { silent = true })
+map('n', '<leader>ff', '<cmd>Telescope find_files hidden=true<CR>', { silent = true })
+map('n', '<leader>fg', '<cmd>Telescope live_grep<CR>', { silent = true })
+map('n', '<leader>fb', '<cmd>Telescope buffers<CR>', { silent = true })
+map('n', '<leader>fh', '<cmd>Telescope help_tags<CR>', { silent = true })
+map('n', '<leader>fo', '<cmd>Telescope oldfiles<CR>', { silent = true })
+map('n', '<leader>fr', '<cmd>Telescope registers<CR>', { silent = true })
 
 -- Tree
-map('n', '<leader>v', '<cmd>NvimTreeToggle<CR>', {silent = true})
+map('n', '<leader>v', '<cmd>NvimTreeToggle<CR>', { silent = true })
+map('n', '<Leader>V', '<cmd>NvimTreeFindFile<CR>', { silent = true })
+
+-- Vsnips
+vim.api.nvim_set_keymap('i', '<Tab>', 'vsnip#jumpable(1) ? \'<Plug>(vsnip-jump-next)\' : \'<Tab>\'', { expr = true, silent = true })
+vim.api.nvim_set_keymap('s', '<Tab>', 'vsnip#jumpable(1) ? \'<Plug>(vsnip-jump-next)\' : \'<Tab>\'', { expr = true, silent = true })
+vim.api.nvim_set_keymap('i', '<C-t>', 'vsnip#jumpable(1) ? \'<Plug>(vsnip-jump-next)\' : \'<Tab>\'', { expr = true, silent = true })
+vim.api.nvim_set_keymap('s', '<C-t>', 'vsnip#jumpable(1) ? \'<Plug>(vsnip-jump-next)\' : \'<Tab>\'', { expr = true, silent = true })
+vim.api.nvim_set_keymap('i', '<S-Tab>', 'vsnip#jumpable(-1) ? \'<Plug>(vsnip-jump-prev)\' : \'<S-Tab>\'', { expr = true, silent = true })
+vim.api.nvim_set_keymap('s', '<S-Tab>', 'vsnip#jumpable(-1) ? \'<Plug>(vsnip-jump-prev)\' : \'<S-Tab>\'', { expr = true, silent = true })
+vim.api.nvim_set_keymap('i', '<C-s>', 'vsnip#jumpable(-1) ? \'<Plug>(vsnip-jump-prev)\' : \'<S-Tab>\'', { expr = true, silent = true })
+vim.api.nvim_set_keymap('s', '<C-s>', 'vsnip#jumpable(-1) ? \'<Plug>(vsnip-jump-prev)\' : \'<S-Tab>\'', { expr = true, silent = true })
+
+-- Timber
+map('nx', '<Leader>ll', '<Plug>(TimberLog)')
+
+
+-- Trouble
+map('n', '<Leader>gl', '<cmd>TroubleToggle<CR>')
+
+
+-- NOTE: lsp related mappings are defined in lsp.lua file

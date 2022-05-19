@@ -17,8 +17,9 @@ opt.colorcolumn = "80,160"
 opt.splitright = true
 opt.splitbelow = true
 opt.termguicolors = true
+opt.wrap = false
 
-opt.completeopt = "menu,menuone,noselect" -- required for compe to work
+opt.completeopt = "menu,menuone,noselect,noinsert" -- required for compe to work
 opt.updatetime = 250 -- update interval for gitsigns
 
 -- Tabs
@@ -35,4 +36,24 @@ opt.ignorecase = true -- Ignore case
 opt.smartcase = true  -- Do not ignore case with capitals
 
 -- Theme
+vim.g.gruvbox_baby_function_style = "NONE"
+vim.g.gruvbox_baby_keyword_style = "NONE"
+vim.g.gruvbox_baby_telescope_theme = 1
+vim.g.gruvbox_baby_background_color = "medium" -- medium or dark
+vim.g.gruvbox_baby_transparent_mode = true
 vim.cmd[[colorscheme gruvbox-baby]]
+
+
+-- Session
+vim.opt.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,globals"
+vim.g.prosession_per_branch = 1
+
+-- Snippets
+vim.g.vsnip_snippet_dir = '~/Documents/configs/nvim/snips'
+vim.g.vsnip_filetypes = {
+    javascriptreact = { "javascript" },
+    typescriptreact = { "typescript" }
+}
+
+-- yank highlight duration
+vim.g.highlightedyank_highlight_duration = 150
