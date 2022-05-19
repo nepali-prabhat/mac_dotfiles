@@ -1,3 +1,14 @@
+-- Configured servers uptop now
+-- bashls
+-- dockerls
+-- efm
+-- gopls (go)
+-- graphql
+-- pyright (python)
+-- sumneko_lua (lua)
+-- tsserver (typescript, javascript)
+-- yamlls
+
 local lsp_installer = require("nvim-lsp-installer")
 local lsp_cmp = require('cmp_nvim_lsp')
 local lspconfig = require("lspconfig")
