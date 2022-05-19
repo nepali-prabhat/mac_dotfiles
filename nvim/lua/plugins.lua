@@ -379,6 +379,8 @@ packer.startup(function()
         'lewis6991/gitsigns.nvim',
         config = gitSignsConfig
     }
+    use 'tpope/vim-fugitive'
+
     -- TODO:
     -- zen mode + twlight
     -- fold
