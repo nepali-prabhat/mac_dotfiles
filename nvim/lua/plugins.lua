@@ -224,6 +224,20 @@ local function snipsConfig()
     end
 end
 
+local function troubleConfig()
+    local icons = require('icons')
+    require "trouble".setup({
+        signs = {
+            error = icons.diag.error,
+            warning = icons.diag.warn,
+            hint = icons.diag.hint,
+            information = icons.diag.info,
+            other = icons.diag.pass
+        },
+    })
+
+end
+
 packer.startup(function()
 
     -- Packer can manage itself
@@ -311,6 +325,7 @@ packer.startup(function()
     use {
         "folke/trouble.nvim",
         requires = "kyazdani42/nvim-web-devicons",
+        config = troubleConfig,
     }
     -- TODO:
     -- Git

@@ -4,10 +4,10 @@ local _icons = {
         thin = "│"
     },
     diag = {
-        error = "",
-        warn = "",
-        hint = "",
-        info = "",
+        error = "",
+        warn = "",
+        hint = "ﯦ",
+        info = "",
         pass = "",
         virtual = "•"
     },
