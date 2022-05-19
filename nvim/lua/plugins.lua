@@ -381,6 +381,7 @@ packer.startup(function()
         config = treesitterConfig,
         run = ':TSUpdate'
     }
+    use 'nvim-treesitter/playground'
 
     -- File Navigation
     use {
@@ -465,6 +466,5 @@ packer.startup(function()
     }
 
 end)
-
 
 return packer

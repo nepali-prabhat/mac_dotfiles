@@ -39,7 +39,7 @@ vim.g.gruvbox_baby_function_style = "NONE"
 vim.g.gruvbox_baby_keyword_style = "NONE"
 vim.g.gruvbox_baby_telescope_theme = 1
 vim.g.gruvbox_baby_background_color = "medium" -- medium or dark
-vim.g.gruvbox_baby_transparent_mode = false
+vim.g.gruvbox_baby_transparent_mode = true
 vim.cmd[[colorscheme gruvbox-baby]]
 
 
