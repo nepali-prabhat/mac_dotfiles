@@ -2,10 +2,10 @@ local packer = require('packer')
 
 local function treesitterConfig()
     require('nvim-treesitter.configs').setup({
-        ensure_installed = { "css", "scss", "typescript", "javascript", "lua", "go", "python", "yaml", "rust", "json" },
-        sync_install = false, -- install parsers synchronously
+        ensure_installed = { "css", "scss", "typescript", "javascript", "lua", "go", "python", "yaml", "rust", "json", "norg" },
+        sync_install = false,
         highlight = {
-            enable = true, -- `false` will disable the whole extension
+            enable = true,
         },
         indent = {
             enable = true
@@ -307,22 +307,55 @@ local function gitSignsConfig()
             end, { expr = true })
 
             -- Actions
-            map({ 'n', 'v' }, '<leader>hs', ':Gitsigns stage_hunk<CR>')
-            map({ 'n', 'v' }, '<leader>hr', ':Gitsigns reset_hunk<CR>')
-            map('n', '<leader>hS', gs.stage_buffer)
-            map('n', '<leader>hu', gs.undo_stage_hunk)
-            map('n', '<leader>hR', gs.reset_buffer)
-            map('n', '<leader>hp', gs.preview_hunk)
-            map('n', '<leader>hb', function() gs.blame_line { full = true } end)
+            map({ 'n', 'v' }, '<leader>ss', ':Gitsigns stage_hunk<CR>')
+            map({ 'n', 'v' }, '<leader>sr', ':Gitsigns reset_hunk<CR>')
+            map('n', '<leader>sS', gs.stage_buffer)
+            map('n', '<leader>su', gs.undo_stage_hunk)
+            map('n', '<leader>sR', gs.reset_buffer)
+            map('n', '<leader>sp', gs.preview_hunk)
+            map('n', '<leader>sb', function() gs.blame_line { full = true } end)
             map('n', '<leader>tb', gs.toggle_current_line_blame)
-            map('n', '<leader>hd', gs.diffthis)
-            map('n', '<leader>hD', function() gs.diffthis('~') end)
+            map('n', '<leader>sd', gs.diffthis)
+            map('n', '<leader>sD', function() gs.diffthis('~') end)
             map('n', '<leader>td', gs.toggle_deleted)
 
             -- Text object
             map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
         end
     })
+end
+
+local function zenConfig()
+    require("zen-mode").setup {
+        window = {
+            backdrop = 1,
+            width = 120,
+        },
+        plugins = {
+            twilight = { enabled = false }
+        }
+    }
+end
+
+local function twlightConfig()
+    require("twilight").setup {
+        dimming = {
+            alpha = 0.35,
+            color = { "Normal", "#ffffff" },
+            inactive = false, -- when true, other windows will be fully dimmed (unless they contain the same buffer)
+        },
+        context = 10, -- amount of lines we will try to show around the current line
+        treesitter = true, -- use treesitter when available for the filetype
+        -- treesitter is used to automatically expand the visible text,
+        -- but you can further control the types of nodes that should always be fully expanded
+        expand = { -- for treesitter, we we always try to expand to the top-most ancestor with these types
+            "function",
+            "method",
+            "table",
+            "if_statement",
+        },
+        exclude = {}, -- exclude these filetypes
+    }
 end
 
 packer.startup(function()
@@ -421,9 +454,15 @@ packer.startup(function()
     }
     use 'tpope/vim-fugitive'
 
-    -- TODO:
     -- zen mode + twlight
-    -- fold
+    use {
+        "folke/zen-mode.nvim",
+        config = zenConfig
+    }
+    use {
+        "folke/twilight.nvim",
+        config = twlightConfig
+    }
 
 end)
 

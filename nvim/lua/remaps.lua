@@ -77,10 +77,14 @@ vim.api.nvim_set_keymap('i', '<C-s>', 'vsnip#jumpable(-1) ? \'<Plug>(vsnip-jump-
 vim.api.nvim_set_keymap('s', '<C-s>', 'vsnip#jumpable(-1) ? \'<Plug>(vsnip-jump-prev)\' : \'<S-Tab>\'', { expr = true, silent = true })
 
 -- Timber
-map('nx', '<Leader>ll', '<Plug>(TimberLog)')
+map('nx', '<Leader>tl', '<Plug>(TimberLog)')
 
 -- Trouble
 map('n', '<Leader>gl', '<cmd>TroubleToggle<CR>')
 
+-- Zen mode + Twlight
+map('n', '<leader>zz', '<cmd>ZenMode<CR>', { silent = true })
+map('n', '<leader>zt', '<cmd>Twilight<CR>', { silent = true })
+
 -- NOTE: lsp related mappings are defined in lsp.lua file.
---       Some mappings are also in plugins 
+--       Some mappings are also in plugins

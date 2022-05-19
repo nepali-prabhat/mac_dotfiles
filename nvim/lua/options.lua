@@ -13,7 +13,6 @@ opt.swapfile = false
 opt.scrolloff = 5 -- scroll offset
 opt.signcolumn = "yes" -- gutter
 opt.wildmode = { "list", "longest" }
-opt.colorcolumn = "80,160"
 opt.splitright = true
 opt.splitbelow = true
 opt.termguicolors = true
