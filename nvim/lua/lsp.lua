@@ -19,7 +19,11 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 local updated_capabilities = lsp_cmp.update_capabilities(capabilities)
 
 -- lsp related mappings
-local function lsp_mappings(buf_set_keymap)
+local function lsp_mappings(client,bufnr)
+    local function buf_set_keymap(...)
+        vim.api.nvim_buf_set_keymap(bufnr, ...)
+    end
+
     -- Mappings.
     local opts = { noremap = true, silent = true }
     buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
@@ -33,6 +37,13 @@ local function lsp_mappings(buf_set_keymap)
     buf_set_keymap('n', '<leader>d', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
     buf_set_keymap('n', '[a', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
     buf_set_keymap('n', ']a', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+
+    -- Set some keybinds conditional on server capabilities
+    if client.resolved_capabilities.document_formatting then
+        buf_set_keymap("n", "<leader>ff", "<cmd>lua vim.lsp.buf.formatting()<CR>", { noremap = true })
+    elseif client.resolved_capabilities.document_range_formatting then
+        buf_set_keymap("v", "<leader>ff", "<cmd>lua vim.lsp.buf.formatting()<CR>", { noremap = true })
+    end
 end
 
 vim.lsp.diagnostic.enable = true
@@ -52,17 +63,8 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 
 -- default on_attach function
 local function on_attach(client, bufnr)
-    local function buf_set_keymap(...)
-        vim.api.nvim_buf_set_keymap(bufnr, ...)
-    end
-
-    lsp_mappings(buf_set_keymap)
-    -- Set some keybinds conditional on server capabilities
-    if client.resolved_capabilities.document_formatting then
-        buf_set_keymap("n", "<leader>ff", "<cmd>lua vim.lsp.buf.formatting()<CR>", { noremap = true })
-    elseif client.resolved_capabilities.document_range_formatting then
-        buf_set_keymap("v", "<leader>ff", "<cmd>lua vim.lsp.buf.formatting()<CR>", { noremap = true })
-    end
+    lsp_mappings(client, bufnr)
+    require('illuminate').on_attach(client)
 end
 
 -- lua setup
@@ -114,7 +116,7 @@ local languages = {
     typescript = { prettier, eslint },
     ["typescript.tsx"] = { prettier, eslint },
     typescriptreact = { prettier, eslint },
-    -- json =               { prettier, eslint },
+    -- json = { prettier, eslint },
     css = { prettier },
     scss = { prettier },
     markdown = { prettier },

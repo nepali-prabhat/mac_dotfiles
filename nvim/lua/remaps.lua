@@ -86,5 +86,9 @@ map('n', '<Leader>gl', '<cmd>TroubleToggle<CR>')
 map('n', '<leader>zz', '<cmd>ZenMode<CR>', { silent = true })
 map('n', '<leader>zt', '<cmd>Twilight<CR>', { silent = true })
 
+-- illuminate
+map('n', 'gn', '<cmd>lua require"illuminate".next_reference{wrap=true}<cr>')
+map('n', 'gN', '<cmd>lua require"illuminate".next_reference{reverse=true,wrap=true}<cr>')
+
 -- NOTE: lsp related mappings are defined in lsp.lua file.
 --       Some mappings are also in plugins

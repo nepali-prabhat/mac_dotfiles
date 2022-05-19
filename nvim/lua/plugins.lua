@@ -10,15 +10,16 @@ local function treesitterConfig()
         indent = {
             enable = true
         },
-        incremental_selection = { -- for selecting based on treesitter nodes
-            enable = true,
-            keymaps = {
-                init_selection = "gnn",
-                node_incremental = "grn",
-                scope_incremental = "grc",
-                node_decremental = "grm",
-            },
-        },
+        -- for selecting based on treesitter nodes
+        -- incremental_selection = {
+        --     enable = true,
+        --     keymaps = {
+        --         init_selection = "gnn",
+        --         node_incremental = "grn",
+        --         scope_incremental = "grc",
+        --         node_decremental = "grm",
+        --     },
+        -- },
         context_commentstring = {
             enable = true
         }
@@ -426,6 +427,7 @@ packer.startup(function()
         requires = "kyazdani42/nvim-web-devicons",
         config = troubleConfig,
     }
+    use 'RRethy/vim-illuminate'
 
     -- Git
     use {
