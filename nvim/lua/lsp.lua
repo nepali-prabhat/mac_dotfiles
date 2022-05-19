@@ -130,3 +130,11 @@ lspconfig.tsserver.setup {
     settings = { documentFormatting = false },
     capabilities = updated_capabilities
 }
+
+local servers = { 'pyright', 'gopls', 'jsonls', 'yamlls', 'bashls', 'graphql' }
+for _, server in pairs(servers) do
+    lspconfig[server].setup {
+        on_attach = on_attach,
+        capabilities = updated_capabilities
+    }
+end
