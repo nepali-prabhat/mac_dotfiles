@@ -53,6 +53,7 @@ local function lualineConfig()
         visual = { a = { fg = colors.fg1, bg = colors.color9, gui = 'bold' } },
     }
 
+    local icons = require("icons")
     require("lualine").setup({
         options = {
             theme = gruvbox_baby,
@@ -61,10 +62,31 @@ local function lualineConfig()
         },
         sections = {
             lualine_a = { 'mode' },
-            lualine_b = { 'branch', 'diff', 'diagnostics' },
-            lualine_c = { 'filename' },
-            lualine_x = { 'filetype' },
-            lualine_y = { 'progress' },
+            lualine_b = { 'branch', 'diff', },
+            lualine_c = { { 'filename', path = 1, show_status = true } },
+            lualine_x = { "filetype" },
+            lualine_y = { {
+                'diagnostics',
+                sources = { 'nvim_diagnostic', 'coc' },
+                sections = { 'error', 'warn', 'info', 'hint' },
+
+                diagnostics_color = {
+                    error = 'DiagnosticError',
+                    warn  = 'DiagnosticWarn',
+                    info  = 'DiagnosticInfo',
+                    hint  = 'DiagnosticHint',
+                },
+                symbols = {
+                    error = icons.diag['error_'],
+                    warn = icons.diag['warn_'],
+                    hint = icons.diag['hint_'],
+                    info = icons.diag['info_'],
+                },
+                colored = true,
+                update_in_insert = false,
+                always_visible = false,
+            }
+            },
             lualine_z = { 'location' }
         },
     })
@@ -154,10 +176,28 @@ local function nvimTreeConfig()
     require('nvim-tree').setup({
         view = {
             mappings = {
+                custom_only = true,
                 list = {
-                    { key = { "d" }, cb = tree_cb("cut") },
-                    { key = { "?" }, cb = tree_cb("toggle_help") },
+                    { key = { "<CR>", "o" }, cb = tree_cb("edit") },
+                    { key = { "<C-v>" }, cb = tree_cb("vsplit") },
+                    { key = { "<C-x>" }, cb = tree_cb("split") },
+                    { key = { "<C-t>" }, cb = tree_cb("tabnew") },
+                    { key = { "<" }, cb = tree_cb("prev_sibling") },
+                    { key = { ">" }, cb = tree_cb("next_sibling") },
+                    { key = { "r" }, cb = tree_cb("rename") },
+                    { key = { "R" }, cb = tree_cb("refresh") },
                     { key = { "df" }, cb = tree_cb("remove") },
+                    { key = { "x" }, cb = tree_cb("cut") },
+                    { key = { "c" }, cb = tree_cb("copy") },
+                    { key = { "v" }, cb = tree_cb("paste") },
+                    { key = { "y" }, cb = tree_cb("copy_name") },
+                    { key = { "Y" }, cb = tree_cb("copy_path") },
+                    { key = { "s" }, cb = tree_cb("system_open") },
+                    { key = { "gy" }, cb = tree_cb("copy_absolute_path") },
+                    { key = { "?" }, cb = tree_cb("toggle_help") },
+                    { key = { "<BS>" }, cb = tree_cb("close_node") },
+                    { key = { "a" }, cb = tree_cb("create") },
+                    { key = { "[" }, cb = tree_cb("parent_node") },
                 }
             }
         }
@@ -292,7 +332,7 @@ packer.startup(function()
 
     -- Theme
     use {
-        'luisiacc/gruvbox-baby',
+        'nepali-prabhat/gruvbox-baby',
     }
 
     -- Show hex colors in neovim (#ffb299)

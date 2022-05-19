@@ -48,9 +48,9 @@ local function on_attach(client, bufnr)
     lsp_mappings(buf_set_keymap)
     -- Set some keybinds conditional on server capabilities
     if client.resolved_capabilities.document_formatting then
-        buf_set_keymap("n", "<leader>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", { noremap = true })
+        buf_set_keymap("n", "<leader>ff", "<cmd>lua vim.lsp.buf.formatting()<CR>", { noremap = true })
     elseif client.resolved_capabilities.document_range_formatting then
-        buf_set_keymap("v", "<leader>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", { noremap = true })
+        buf_set_keymap("v", "<leader>ff", "<cmd>lua vim.lsp.buf.formatting()<CR>", { noremap = true })
     end
 end
 

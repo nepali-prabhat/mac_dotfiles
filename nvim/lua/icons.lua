@@ -9,7 +9,7 @@ local _icons = {
         hint = "ﯦ",
         info = "",
         pass = "",
-        virtual = "•"
+        virtual = ""
     },
     diff = {
         add = "",

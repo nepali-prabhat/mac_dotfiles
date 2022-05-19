@@ -57,8 +57,6 @@ map('n', '<M-l>', '<cmd>BufferLineMoveNext<CR>', { silent = true })
 -- Telescope
 map('n', '<C-p>', '<cmd>Telescope find_files hidden=true<CR>', { silent = true })
 map('n', '<C-f>', '<cmd>Telescope live_grep<CR>', { silent = true })
-map('n', '<leader>ff', '<cmd>Telescope find_files hidden=true<CR>', { silent = true })
-map('n', '<leader>fg', '<cmd>Telescope live_grep<CR>', { silent = true })
 map('n', '<leader>fb', '<cmd>Telescope buffers<CR>', { silent = true })
 map('n', '<leader>fh', '<cmd>Telescope help_tags<CR>', { silent = true })
 map('n', '<leader>fo', '<cmd>Telescope oldfiles<CR>', { silent = true })
