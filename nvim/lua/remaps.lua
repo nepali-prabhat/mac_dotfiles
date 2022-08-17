@@ -56,25 +56,34 @@ map('n', '<M-l>', '<cmd>BufferLineMoveNext<CR>', { silent = true })
 
 -- Telescope
 map('n', '<C-p>', '<cmd>Telescope find_files hidden=true<CR>', { silent = true })
+map('n', '<C-b>', '<cmd>Telescope buffers hidden=true<CR>', { silent = true })
 map('n', '<C-f>', '<cmd>Telescope live_grep<CR>', { silent = true })
-map('n', '<leader>fb', '<cmd>Telescope buffers<CR>', { silent = true })
-map('n', '<leader>fh', '<cmd>Telescope help_tags<CR>', { silent = true })
-map('n', '<leader>fo', '<cmd>Telescope oldfiles<CR>', { silent = true })
-map('n', '<leader>fr', '<cmd>Telescope registers<CR>', { silent = true })
+map('n', '<leader>tb', '<cmd>Telescope buffers<CR>', { silent = true })
+map('n', '<leader>th', '<cmd>Telescope help_tags<CR>', { silent = true })
+map('n', '<leader>to', '<cmd>Telescope oldfiles<CR>', { silent = true })
+map('n', '<leader>tr', '<cmd>Telescope registers<CR>', { silent = true })
 
 -- Tree
 map('n', '<leader>v', '<cmd>NvimTreeToggle<CR>', { silent = true })
 map('n', '<Leader>V', '<cmd>NvimTreeFindFile<CR>', { silent = true })
 
 -- Vsnips
-vim.api.nvim_set_keymap('i', '<Tab>', 'vsnip#jumpable(1) ? \'<Plug>(vsnip-jump-next)\' : \'<Tab>\'', { expr = true, silent = true })
-vim.api.nvim_set_keymap('s', '<Tab>', 'vsnip#jumpable(1) ? \'<Plug>(vsnip-jump-next)\' : \'<Tab>\'', { expr = true, silent = true })
-vim.api.nvim_set_keymap('i', '<C-t>', 'vsnip#jumpable(1) ? \'<Plug>(vsnip-jump-next)\' : \'<Tab>\'', { expr = true, silent = true })
-vim.api.nvim_set_keymap('s', '<C-t>', 'vsnip#jumpable(1) ? \'<Plug>(vsnip-jump-next)\' : \'<Tab>\'', { expr = true, silent = true })
-vim.api.nvim_set_keymap('i', '<S-Tab>', 'vsnip#jumpable(-1) ? \'<Plug>(vsnip-jump-prev)\' : \'<S-Tab>\'', { expr = true, silent = true })
-vim.api.nvim_set_keymap('s', '<S-Tab>', 'vsnip#jumpable(-1) ? \'<Plug>(vsnip-jump-prev)\' : \'<S-Tab>\'', { expr = true, silent = true })
-vim.api.nvim_set_keymap('i', '<C-s>', 'vsnip#jumpable(-1) ? \'<Plug>(vsnip-jump-prev)\' : \'<S-Tab>\'', { expr = true, silent = true })
-vim.api.nvim_set_keymap('s', '<C-s>', 'vsnip#jumpable(-1) ? \'<Plug>(vsnip-jump-prev)\' : \'<S-Tab>\'', { expr = true, silent = true })
+vim.api.nvim_set_keymap('i', '<Tab>', 'vsnip#jumpable(1) ? \'<Plug>(vsnip-jump-next)\' : \'<Tab>\'',
+    { expr = true, silent = true })
+vim.api.nvim_set_keymap('s', '<Tab>', 'vsnip#jumpable(1) ? \'<Plug>(vsnip-jump-next)\' : \'<Tab>\'',
+    { expr = true, silent = true })
+vim.api.nvim_set_keymap('i', '<C-t>', 'vsnip#jumpable(1) ? \'<Plug>(vsnip-jump-next)\' : \'<Tab>\'',
+    { expr = true, silent = true })
+vim.api.nvim_set_keymap('s', '<C-t>', 'vsnip#jumpable(1) ? \'<Plug>(vsnip-jump-next)\' : \'<Tab>\'',
+    { expr = true, silent = true })
+vim.api.nvim_set_keymap('i', '<S-Tab>', 'vsnip#jumpable(-1) ? \'<Plug>(vsnip-jump-prev)\' : \'<S-Tab>\'',
+    { expr = true, silent = true })
+vim.api.nvim_set_keymap('s', '<S-Tab>', 'vsnip#jumpable(-1) ? \'<Plug>(vsnip-jump-prev)\' : \'<S-Tab>\'',
+    { expr = true, silent = true })
+vim.api.nvim_set_keymap('i', '<C-s>', 'vsnip#jumpable(-1) ? \'<Plug>(vsnip-jump-prev)\' : \'<S-Tab>\'',
+    { expr = true, silent = true })
+vim.api.nvim_set_keymap('s', '<C-s>', 'vsnip#jumpable(-1) ? \'<Plug>(vsnip-jump-prev)\' : \'<S-Tab>\'',
+    { expr = true, silent = true })
 
 -- Timber
 map('nx', '<Leader>tl', '<Plug>(TimberLog)')

@@ -8,6 +8,7 @@
 -- sumneko_lua (lua)
 -- tsserver (typescript, javascript)
 -- yamlls
+-- tailwindcss
 
 local lsp_installer = require("nvim-lsp-installer")
 local lsp_cmp = require('cmp_nvim_lsp')
@@ -18,8 +19,12 @@ lsp_installer.setup({})
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 local updated_capabilities = lsp_cmp.update_capabilities(capabilities)
 
+-- for emmet_ls
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+
 -- lsp related mappings
-local function lsp_mappings(client,bufnr)
+local function lsp_mappings(client, bufnr)
     local function buf_set_keymap(...)
         vim.api.nvim_buf_set_keymap(bufnr, ...)
     end
@@ -64,7 +69,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 -- default on_attach function
 local function on_attach(client, bufnr)
     lsp_mappings(client, bufnr)
-    require('illuminate').on_attach(client)
+    -- require('illuminate').on_attach(client)
 end
 
 -- lua setup
@@ -144,7 +149,13 @@ lspconfig.tsserver.setup {
     capabilities = updated_capabilities
 }
 
-local servers = { 'pyright', 'gopls', 'jsonls', 'yamlls', 'bashls', 'graphql' }
+lspconfig.emmet_ls.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+    filetypes = { 'html', 'typescriptreact', 'javascriptreact', 'css', 'sass', 'scss', 'less' },
+})
+
+local servers = { 'pyright', 'gopls', 'jsonls', 'yamlls', 'bashls', 'graphql', 'dockerls', 'tailwindcss' }
 for _, server in pairs(servers) do
     lspconfig[server].setup {
         on_attach = on_attach,

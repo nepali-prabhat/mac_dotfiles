@@ -41,6 +41,8 @@ vim.g.gruvbox_baby_telescope_theme = 1
 vim.g.gruvbox_baby_background_color = "dark" -- medium or dark
 vim.g.gruvbox_baby_transparent_mode = false
 vim.cmd[[colorscheme gruvbox-baby]]
+-- vim.cmd[[colorscheme rvcs]]
+-- vim.cmd[[colorscheme humanoid]]
 
 
 -- Session

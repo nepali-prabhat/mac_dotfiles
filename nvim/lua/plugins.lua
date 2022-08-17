@@ -2,7 +2,8 @@ local packer = require('packer')
 
 local function treesitterConfig()
     require('nvim-treesitter.configs').setup({
-        ensure_installed = { "css", "scss", "typescript", "javascript", "lua", "go", "python", "yaml", "rust", "json", "norg" },
+        ensure_installed = { "css", "scss", "typescript", "javascript", "lua", "go", "python", "yaml", "rust", "json",
+            "norg" },
         sync_install = false,
         highlight = {
             enable = true,
@@ -65,30 +66,33 @@ local function lualineConfig()
             lualine_a = { 'mode' },
             lualine_b = { 'branch', 'diff', },
             lualine_c = { { 'filename', path = 1, show_status = true } },
-            lualine_x = { "filetype" },
-            lualine_y = { {
-                'diagnostics',
-                sources = { 'nvim_diagnostic', 'coc' },
-                sections = { 'error', 'warn', 'info', 'hint' },
+            lualine_x = {},
+            lualine_y = {},
+            lualine_z = {}
+            -- lualine_x = { "filetype" },
+            -- lualine_y = { {
+            --     'diagnostics',
+            --     sources = { 'nvim_diagnostic', 'coc' },
+            --     sections = { 'error', 'warn', 'info', 'hint' },
 
-                diagnostics_color = {
-                    error = 'DiagnosticError',
-                    warn  = 'DiagnosticWarn',
-                    info  = 'DiagnosticInfo',
-                    hint  = 'DiagnosticHint',
-                },
-                symbols = {
-                    error = icons.diag['error_'],
-                    warn = icons.diag['warn_'],
-                    hint = icons.diag['hint_'],
-                    info = icons.diag['info_'],
-                },
-                colored = true,
-                update_in_insert = false,
-                always_visible = false,
-            }
-            },
-            lualine_z = { 'location' }
+            --     diagnostics_color = {
+            --         error = 'DiagnosticError',
+            --         warn  = 'DiagnosticWarn',
+            --         info  = 'DiagnosticInfo',
+            --         hint  = 'DiagnosticHint',
+            --     },
+            --     symbols = {
+            --         error = icons.diag['error_'],
+            --         warn = icons.diag['warn_'],
+            --         hint = icons.diag['hint_'],
+            --         info = icons.diag['info_'],
+            --     },
+            --     colored = true,
+            --     update_in_insert = false,
+            --     always_visible = false,
+            -- }
+            -- },
+            -- lualine_z = { 'location' }
         },
     })
 end
@@ -338,6 +342,20 @@ local function zenConfig()
     }
 end
 
+local function winbarConfig()
+    require('treesitter-context').setup {
+        max_lines = 1,
+        patterns = {
+            default = {
+                'class',
+                'function',
+                'method',
+                'const',
+            },
+        },
+    }
+end
+
 packer.startup(function()
 
     -- Packer can manage itself
@@ -347,6 +365,8 @@ packer.startup(function()
     use {
         'nepali-prabhat/gruvbox-baby',
     }
+    use 'shaeinst/roshnivim-cs'
+    use 'humanoid-colors/vim-humanoid-colorscheme'
 
     -- Show hex colors in neovim (#ffb299)
     use {
@@ -441,6 +461,9 @@ packer.startup(function()
         "folke/zen-mode.nvim",
         config = zenConfig
     }
+
+    -- winbar
+    use { 'nvim-treesitter/nvim-treesitter-context', config = winbarConfig }
 
 end)
 
